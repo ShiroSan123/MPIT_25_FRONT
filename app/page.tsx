@@ -1,15 +1,18 @@
-import Hero from '@/components/Hero'
-import Header from '@/components/Header';
-import { Mini1 } from '@/components/Mini1';
+'use client';
 
-export default function Home() {
-  return (
-    <main className="relative">
-			<div className='h-screen'>
-				<Header />
-				<Hero />
-			</div>
-			<Mini1 />
-		</main>
-  );
+import { HashRouter as Router, Routes, Route  } from "react-router-dom";
+import Home from './pages/Home';
+import Profile from './pages/Profile'
+
+function App() {
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<Home />}/>
+				<Route path="/profile" element={<Profile />}/>
+			</Routes>
+		</Router>
+	)
 }
+
+export default App
