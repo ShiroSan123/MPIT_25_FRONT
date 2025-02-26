@@ -8,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+			fontFamily: {
+				inter: ["var(--font-inter)", "sans-serif"],
+				nunito: ["var(--font-nunito)", "sans-serif"],
+				poppins: ["var(--font-poppins)", "sans-serif"],
+			},
       colors: {
         black: {
 					DEFAULT: '#000',
@@ -15,6 +20,9 @@ export default {
 				},
 				red: {
 					button: '#BD7E7E',
+				},
+				gray: {
+					main: '#D9D9D9',
 				}
       },
     },

@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    
-  }
+.font-inter {
+  font-family: var(--font-inter);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Nunito, sans-serif;
+.font-nunito {
+  font-family: var(--font-nunito);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
 }

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Nunito_Sans, Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
-const nunitoSans = Nunito({
-  variable: "--font-nunito-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"]});
+const nunito = Nunito_Sans({ subsets: ["latin"]});
+const poppins = Poppins({ weight: ["500","400","700"], subsets: ["latin"]});	
 
 export const metadata: Metadata = {
   title: "Cyberstaff",
@@ -19,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${nunitoSans.variable} antialiased`}
-      >
+      <body className={'${inter.className} ${nunito.className} ${poppins.className}'}>
         {children}
       </body>
     </html>
