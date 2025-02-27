@@ -2,9 +2,10 @@
 
 import { HashRouter as Router, Routes, Route  } from "react-router-dom";
 import Home from './pages/Home';
-import Profile from './pages/Profile'
-import LogIn from "./pages/LogIn";
-import ChooseAuth from './pages/ChooseAuth'
+import Profile from './pages/Profile';
+import LogAndReg from './pages/LogAndReg';
+import ChooseAuth from './pages/ChooseAuth';
+import News from './pages/News';
 
 function App() {
 	return (
@@ -12,8 +13,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />}/>
 				<Route path="/profile" element={<Profile />}/>
-				<Route path="/LogIn" element={<LogIn />}/>
+				<Route path="/LogAndReg" element={<LogAndReg />}/>
 				<Route path="/ChooseAuth" element={<ChooseAuth />}/>
+				<Route path="/News" element={<News />}/>
 			</Routes>
 		</Router>
 	)

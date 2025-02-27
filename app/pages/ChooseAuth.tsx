@@ -13,12 +13,12 @@ export default function ChooseAuth() {
 					<div className="mb-6 pt-8">
 						<p className="font-normal text-xl">Сотрудник</p>
 						<div className="flex flex-col gap-4 pt-2">
-							<a href="/#/LogIn">
+							<a href="/#/LogAndReg?user=2">
 								<button className="w-full py-2 bg-[#1B088D] text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 									Вход
 								</button>
 							</a>
-							<a href="#">
+							<a href="/#/LogAndReg?user=3">
 								<button className="w-full py-2 bg-[#086D8D] text-white font-semibold rounded-lg hover:bg-teal-600 transition">
 									Регистрация
 								</button>
@@ -29,7 +29,7 @@ export default function ChooseAuth() {
 					{/* Админ */}
 					<div>
 						<p className="font-normal text-xl">Админ</p>
-						<a href="/#/LogIn">
+						<a href="/#/LogAndReg?user=1">
 							<button className="w-full py-2 mt-2 bg-[#1B088D] text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 								Вход
 							</button>

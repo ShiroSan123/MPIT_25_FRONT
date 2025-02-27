@@ -2,6 +2,7 @@
 
 import Hero from '@/components/Hero'
 import Header from '@/components/Header';
+import Footer from '@/components/Footer'
 import { Mini1 } from '@/components/Mini1';
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
 				<Hero />
 			</div>
 			<Mini1 />
+			<Footer />
 		</main>
   );
 }

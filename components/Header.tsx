@@ -7,10 +7,10 @@ const Header = () => {
 				<a href="/"><div className="px-[70px] bg-no-repeat bg-[url(../app/cache/Logo.svg)] min-h-[30px]"></div></a>
 				<nav className="hidden sm:inline-block">
 					<ul className="flex lg:gap-[30px]">
-						<li className="font-regular text-xl text-black"><a href="#">Новости</a></li>
-						<li className="font-regular text-xl text-black"><a href="#">Документы</a></li>
-						<li className="font-regular text-xl text-black"><a href="#">Заявления</a></li>
-						<li className="font-regular text-xl text-black"><a href="#">Мероприятия</a></li>
+						<li className="font-normal text-xl text-black hover:text-blue-main"><a href="/#/News">Новости</a></li>
+						<li className="font-normal text-xl text-black hover:text-blue-main"><a href="#">Документы</a></li>
+						<li className="font-normal text-xl text-black hover:text-blue-main"><a href="#">Заявления</a></li>
+						<li className="font-normal text-xl text-black hover:text-blue-main"><a href="#">Мероприятия</a></li>
 					</ul>
 				</nav>
 				<div className="lg:gap-9">
