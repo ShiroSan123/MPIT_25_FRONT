@@ -13,7 +13,7 @@ export default function ChooseAuth() {
 					<div className="mb-6 pt-8">
 						<p className="font-normal text-xl">Сотрудник</p>
 						<div className="flex flex-col gap-4 pt-2">
-							<a href="#">
+							<a href="/#/LogIn">
 								<button className="w-full py-2 bg-[#1B088D] text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 									Вход
 								</button>

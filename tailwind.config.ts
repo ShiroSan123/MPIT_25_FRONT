@@ -23,6 +23,10 @@ export default {
 				},
 				gray: {
 					main: '#D9D9D9',
+					dark: '#47464A'
+				},
+				blue: {
+					main: '#1B088D'
 				}
       },
     },

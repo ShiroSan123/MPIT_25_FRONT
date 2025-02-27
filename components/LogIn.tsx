@@ -34,24 +34,32 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='flex items-center flex-col gap-6'>
       <input
+				className='border-2 w-1/2 text-base text-gray-dark rounded-[12px] border-gray-dark px-4 py-3'
         type="text"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder="Phone"
+        placeholder="Телефон"
         required
       />
       <input
+				className='border-2 w-1/2 text-base text-gray-dark rounded-[12px] border-gray-dark px-4 py-3'
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+        placeholder="Пароль"
         required
       />
-      <button type="submit">Login</button>
+      <button type="submit" className='text-white bg-blue-main rounded-[12px] w-1/2 text-base py-3 mt-3'>Вход</button>
+			<div className='w-1/2 text-left *:text-gray-dark relative'>
+				<div className='bg-blue-main w-[100%] h-full opacity-10 absolute rounded-[12px]'></div>
+				<h3 className='text-base px-4 pt-3'>Вы в первый раз на сайте?</h3>
+				<p className='text-xs px-4 pb-3'>Для получения доступа к оффису, пожалуйста, обратитесь к главному админу</p>
+			</div>
+			
       {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+    </form>	
   );
 }
 
