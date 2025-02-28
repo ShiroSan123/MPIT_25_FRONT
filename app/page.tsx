@@ -10,6 +10,7 @@ import Employees from './pages/Employees';
 import Events from './pages/Events';
 import Logout from "./pages/Logout";
 import "./globals.css";
+import AdminPage from "./pages/Admin";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/Employees" element={<Employees />} />
 				<Route path="/Events" element={<Events />} />
 				<Route path="/Logout" element={<Logout />} />
+				<Route path="/Admin" element={<AdminPage />} />
 			</Routes>
 		</Router>
 	)

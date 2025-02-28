@@ -47,3 +47,33 @@ export const getProfile = async () => {
     throw error;
   }
 };
+
+export const getRole = async () => {
+  try {
+    const response = await httpClient.get('/role');
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка получения роли:', error);
+    throw error;
+  }
+};
+
+export const getGuests = async () => {
+  try {
+    const response = await httpClient.get('/users/guests');
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка получения роли:', error);
+    throw error;
+  }
+};
+
+export const upgradeUser = async (userId) => {
+  try {
+    const response = await httpClient.patch(`/users/${userId}/upgrade`);
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка обновления роли:', error);
+    throw error;
+  }
+};
