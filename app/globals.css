@@ -2,14 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.font-inter {
-  font-family: var(--font-inter);
+@import url("https://fast.fonts.net/lt/1.css?apiType=css&c=2734f38e-eecb-4820-a59c-eb10a714566a&fontids=1489424,1489436,1489444,1489452");
+
+@font-face {
+	font-family: "Helvetica LT W01 Light";
+	src: url("/Fonts/1489424/37953885-0443-4c72-a693-9152a9f5a901.woff2") format("woff2");
 }
 
-.font-nunito {
-  font-family: var(--font-nunito);
-}
-
-.font-poppins {
-  font-family: var(--font-poppins);
+.font-helvetica-light {
+	font-family: "Helvetica LT W01 Light", sans-serif;
 }

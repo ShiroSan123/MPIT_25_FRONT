@@ -1,7 +1,7 @@
 'use client';
 
 
-import { useSearchParams  } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Login from '@/components/LogIn';
 import Register from "@/components/Register";
 
@@ -13,8 +13,8 @@ export default function LogIn() {
 	const [params] = useSearchParams();
 	const user = params.get("user");
 
-  return (
-    <main className="relative h-screen w-screen bg-[url('../app/cache/bg-auth.svg')] bg-cover bg-no-repeat bg-right">
+	return (
+		<main className="relative h-screen w-screen bg-[url('../app/cache/bg-auth.svg')] bg-cover bg-no-repeat bg-right">
 			<div className="h-screen w-5/12 bg-white *:text-[#47464A]">
 				<section className="flex flex-col mx-auto text-center pt-[20vh]">
 					<a href="/"><div className="mx-auto bg-no-repeat bg-[url(../app/cache/gray-logo.svg)] bg-contain bg-center min-h-[100px] w-1/2"></div></a>
@@ -30,5 +30,5 @@ export default function LogIn() {
 				</section>
 			</div>
 		</main>
-  );
+	);
 }
