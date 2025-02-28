@@ -9,9 +9,7 @@ const Header = () => {
 	const [profile, setProfile] = useState<ProfileData | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const [token, setToken] = useState<string | null>(null);
 
-	// Получаем токен только один раз при монтировании
 	useEffect(() => {
 		const fetchProfile = async () => {
 			try {

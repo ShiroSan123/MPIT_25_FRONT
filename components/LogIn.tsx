@@ -18,8 +18,10 @@ function Login() {
 			const response = await axios.post(
 				'http://localhost:8000/api/login',
 				{ phone, password },
-				{ headers: { 'Content-Type': 'application/json' },
-			    withCredentials: true }
+				{
+					headers: { 'Content-Type': 'application/json' },
+					withCredentials: true
+				}
 			);
 
 			// Условие: если сервер вернул токен, перенаправляем
