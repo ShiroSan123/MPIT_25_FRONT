@@ -8,6 +8,7 @@ import ChooseAuth from './pages/ChooseAuth';
 import News from './pages/News';
 import Employees from './pages/Employees';
 import Events from './pages/Events';
+import Logout from "./pages/Logout";
 import "./globals.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/News" element={<News />} />
 				<Route path="/Employees" element={<Employees />} />
 				<Route path="/Events" element={<Events />} />
+				<Route path="/Logout" element={<Logout />} />
 			</Routes>
 		</Router>
 	)
