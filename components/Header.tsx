@@ -11,7 +11,7 @@ const Header = () => {
 					<ul className="flex lg:gap-[30px] font-regular text-xl text-black">
 						<li className="hover:text-blue-main"><a href="/#/News">Новости</a></li>
 						<li className="hover:text-blue-main"><a href="/#/Events">Мероприятия</a></li>
-						<li className="hover:text-blue-main"><a href="/#/profile">Профиль</a></li>
+						<li className="hover:text-blue-main"><a href="/">Профиль</a></li>
 						<li className="hover:text-blue-main"><a href="/#/Employees">Сотрудники</a></li>
 					</ul>
 				</nav>
