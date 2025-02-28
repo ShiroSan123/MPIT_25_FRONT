@@ -1,35 +1,40 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getProfile } from '@/api'
 
 interface ProfileData {
-	username: string;
-}
-
-function Profile() {
+	id: number;
+	user_id: number;
+	corporate_email: string;
+	user: {
+	  first_name: string;
+	  last_name: string;
+	};
+  }
+  
+  function Profile() {
 	const [profile, setProfile] = useState<ProfileData | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const isAuth = true;
-
+  
 	useEffect(() => {
 		const fetchProfile = async () => {
-			if (!isAuth) return;
-			console.log('hello');
-			try {
-				const response = axios.get('http://localhost:8000/api/protected');
-				setProfile(response.data.username);
-			} catch (error) {
-				setError('Ошибка при получении профиля');
-				console.error("Ошибка при получении профиля", error);
-			} finally {
-				setLoading(false);
-			}
+		  try {
+			const data = await getProfile();
+			setProfile(data);
+		  } catch (err) {
+			setError('Ошибка получения профиля');
+			console.error(err);
+		  } finally {
+			setLoading(false);
+		  }
 		};
-
+	
 		fetchProfile();
-	});
+	  }, []);
+  
 
 	if (loading) return <p>Загрузка...</p>;
 	if (error) return <p>{error}</p>;
@@ -38,7 +43,9 @@ function Profile() {
 		<div>
 			{profile ? (
 				<div>
-					<h2>{profile.username}</h2>
+					    <h1>Профиль</h1>
+						<p>Корпоративный Email: {profile?.corporate_email}</p>
+						<p>Имя: {profile?.user.first_name} {profile?.user.last_name}</p>
 				</div>
 			) : (
 				<p>Профиль не найден</p>
