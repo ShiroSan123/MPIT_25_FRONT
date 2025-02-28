@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getProfile } from '@/api'
 
 interface ProfileData {
 	id: number;
@@ -20,22 +20,20 @@ interface ProfileData {
 	const isAuth = true;
   
 	useEffect(() => {
-	  const fetchProfile = async () => {
-		if (!isAuth) return;
-		try {
-		  const response = await axios.get('http://localhost:8000/api/profile', { withCredentials: true });
-		  setProfile(response.data);
-		} catch (error) {
-		  setError('Ошибка при получении профиля');
-		  console.error("Ошибка при получении профиля", error);
-		} finally {
-		  setLoading(false);
-		}
-	  };
-  
-	  fetchProfile();
-	}, [isAuth]);
-  
+		const fetchProfile = async () => {
+		  try {
+			const data = await getProfile();
+			setProfile(data);
+		  } catch (err) {
+			setError('Ошибка получения профиля');
+			console.error(err);
+		  } finally {
+			setLoading(false);
+		  }
+		};
+	
+		fetchProfile();
+	  }, []);
   
 
 	if (loading) return <p>Загрузка...</p>;
