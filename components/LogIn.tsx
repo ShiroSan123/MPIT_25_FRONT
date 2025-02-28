@@ -18,14 +18,13 @@ function Login() {
 			const response = await axios.post(
 				'http://localhost:8000/api/login',
 				{ phone, password },
-				{ headers: { 'Content-Type': 'application/json' } }
+				{ headers: { 'Content-Type': 'application/json' },
+			    withCredentials: true }
 			);
 
 			// Условие: если сервер вернул токен, перенаправляем
 			if (response) {
 				console.log("Успешный вход:", response.data);
-				localStorage.setItem('token', '1');
-				console.log(localStorage.getItem('token'));
 
 				// Перенаправление в зависимости от роли
 				if (response.data.role === 'admin') {
