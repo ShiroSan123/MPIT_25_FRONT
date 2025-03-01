@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 
 module.exports = {
 	images: {
-		domains: ['example.com'], // Добавьте домен, откуда загружаются изображения
+		domains: ['upload.wikimedia.org'], // Добавьте домен, откуда загружаются изображения
 	},
 };
 

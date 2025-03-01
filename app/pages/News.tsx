@@ -8,102 +8,52 @@ const news = [
 	{
 		title: 'Самый большой Дальневосточный медведь - Умка',
 		date: '26.02.2025',
-		img: 'url(https://example.com/news/umka.jpg)'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Якутские театры готовят премьеры к 80-летию Великой Победы, которая состоится 9 мая',
 		date: '26.02.2025',
-		img: 'https://example.com/news/theater.jpg'
+		img: '/news/3.jpg'
 	},
 	{
 		title: 'Не просто история о любви. Режиссер Айал Струкин – о создании первой якутской дорамы «Мой парень – Айдол!»',
 		date: '26.02.2025',
-		img: 'https://example.com/news/drama.jpg'
+		img: '/news/4.jpg'
 	},
 	{
 		title: 'Фестиваль «Путешествие на Полюс холода-2025» пройдет в Оймяконе в самой холодной точке.',
 		date: '26.02.2025',
-		img: 'https://example.com/news/festival.jpg'
+		img: '/news/5.jpg'
 	},
 	{
 		title: 'Северное сияние: Как и где его лучше всего наблюдать в 2025 году',
 		date: '27.02.2025',
-		img: 'https://example.com/news/aurora.jpg'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Арктический туризм: новые маршруты и программы в 2025 году',
 		date: '27.02.2025',
-		img: 'https://example.com/news/arctic_tourism.jpg'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Ученые обнаружили новые виды животных в Якутии',
 		date: '28.02.2025',
-		img: 'https://example.com/news/new_species.jpg'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Якутский стартап представил инновационный способ добычи льда',
 		date: '28.02.2025',
-		img: 'https://example.com/news/ice_extraction.jpg'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Сохранение языков коренных народов: Новые инициативы в 2025 году',
 		date: '01.03.2025',
-		img: 'https://example.com/news/indigenous_languages.jpg'
+		img: '/news/2.jpg'
 	},
 	{
 		title: 'Экологическая экспедиция на Чукотку: итоги исследований',
 		date: '02.03.2025',
-		img: 'https://example.com/news/ecology.jpg'
-	},
-	{
-		title: 'Традиционные якутские ремесла: как развивается народное искусство',
-		date: '03.03.2025',
-		img: 'https://example.com/news/crafts.jpg'
-	},
-	{
-		title: 'Якутские ученые разрабатывают новый метод защиты вечной мерзлоты',
-		date: '04.03.2025',
-		img: 'https://example.com/news/permafrost.jpg'
-	},
-	{
-		title: 'Арктический марафон 2025: подготовка к уникальному событию',
-		date: '05.03.2025',
-		img: 'https://example.com/news/marathon.jpg'
-	},
-	{
-		title: 'Якутия разрабатывает новую стратегию экологического туризма',
-		date: '06.03.2025',
-		img: 'https://example.com/news/eco_tourism.jpg'
-	},
-	{
-		title: 'Оленеводы Якутии внедряют современные технологии в традиционные промыслы',
-		date: '07.03.2025',
-		img: 'https://example.com/news/reindeer.jpg'
-	},
-	{
-		title: 'Археологи нашли древние артефакты на территории Якутии',
-		date: '08.03.2025',
-		img: 'https://example.com/news/archaeology.jpg'
-	},
-	{
-		title: 'Крупнейший ледовый фестиваль Якутии откроется в марте 2025 года',
-		date: '09.03.2025',
-		img: 'https://example.com/news/ice_festival.jpg'
-	},
-	{
-		title: 'Уникальные природные явления Арктики: что можно увидеть в 2025 году',
-		date: '10.03.2025',
-		img: 'https://example.com/news/nature.jpg'
-	},
-	{
-		title: 'Космические исследования в Арктике: новые проекты российских ученых',
-		date: '11.03.2025',
-		img: 'https://example.com/news/space.jpg'
-	},
-	{
-		title: 'Глобальное потепление: как Якутия адаптируется к изменениям климата',
-		date: '12.03.2025',
-		img: 'https://example.com/news/climate.jpg'
+		img: '/news/2.jpg'
 	}
 ];
 
