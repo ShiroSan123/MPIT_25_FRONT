@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
 
 function Login() {
 	const [phone, setPhone] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState<string | null>(null);
-	const navigate = useNavigate();
+	const navigate = useNavigate(); // Инициализируем useNavigate
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -20,12 +20,23 @@ function Login() {
 				{ phone, password },
 				{
 					headers: { 'Content-Type': 'application/json' },
-					withCredentials: true,
+					withCredentials: true
 				}
 			);
 
-			console.log("Успешный вход:", response.data);
-			navigate('/');
+			// Условие: если сервер вернул токен, перенаправляем
+			if (response) {
+				console.log("Успешный вход:", response.data);
+
+				// Перенаправление в зависимости от роли
+				if (response.data.role === 'admin') {
+					navigate('/'); // Перенаправляем администратора
+				} else {
+					navigate('/'); // Обычный пользователь
+				}
+			} else {
+				setError('Ошибка при входе. Неверные данные.');
+			}
 		} catch (error) {
 			setError('Ошибка при входе. Проверьте данные.');
 			console.error('Ошибка:', error);
@@ -33,11 +44,9 @@ function Login() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-lg">
-			<h2 className="text-2xl font-semibold text-center mb-4">Вход</h2>
-
+		<form onSubmit={handleSubmit} className='flex items-center flex-col gap-6'>
 			<input
-				className="border w-full text-base text-gray-800 rounded-lg px-4 py-3 mb-4"
+				className='border-2 w-1/2 text-base text-gray-dark rounded-[12px] border-gray-dark px-4 py-3'
 				type="text"
 				value={phone}
 				onChange={(e) => setPhone(e.target.value)}
@@ -45,18 +54,17 @@ function Login() {
 				required
 			/>
 			<input
-				className="border w-full text-base text-gray-800 rounded-lg px-4 py-3 mb-4"
+				className='border-2 w-1/2 text-base text-gray-dark rounded-[12px] border-gray-dark px-4 py-3'
 				type="password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				placeholder="Пароль"
 				required
 			/>
-			<button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700">
+			<button type="submit" className='text-white bg-blue-main rounded-[12px] w-1/2 text-base py-3 mt-3 hover:bg-blue-800'>
 				Вход
 			</button>
-
-			{error && <p className="text-red-500 text-center mt-2">{error}</p>}
+			{error && <p style={{ color: 'red' }}>{error}</p>}
 		</form>
 	);
 }
