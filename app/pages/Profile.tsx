@@ -1,30 +1,88 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import UserCard from "@/components/UserCard";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Mail, Phone, Send, Edit } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
+
+interface ProfileData {
+	id: number;
+	user_id: number;
+	phone: string;
+	business_role: string | null;
+	corporate_email: string;
+	photo_url: string | null;
+	additional_info: string | null;
+	department_id: number | null;
+	user: {
+		first_name: string;
+		last_name: string;
+	};
+	department: string | null;
+}
+
+interface Session {
+	phone: string;
+	started_at: string;
+}
 
 const ProfilePage = () => {
+	const [profile, setProfile] = useState<ProfileData | null>(null);
+	const [sessions, setSessions] = useState<Session[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	// Получаем данные профиля и сессий
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const profileResponse = await axios.get("http://localhost:8000/api/profile", {
+					withCredentials: true,
+				});
+
+				if (profileResponse.data && typeof profileResponse.data === "object") {
+					setProfile(profileResponse.data);
+				} else {
+					setError("Профиль не найден");
+				}
+
+				const sessionResponse = await axios.get("http://localhost:8000/api/active_sessions", {
+					withCredentials: true,
+				});
+				setSessions(sessionResponse.data);
+			} catch (err) {
+				setError("Ошибка загрузки данных");
+				console.error("Ошибка загрузки:", err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchData();
+	}, []);
+
 	return (
 		<>
 			<Header />
 			<div className="max-w-5xl mx-auto p-6 py-[100px]">
 				{/* Профиль */}
-				<section className="bg-blue-100 p-6 rounded-lg flex items-center justify-between">
-					<div className="flex items-center space-x-4">
-						<div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center text-3xl">
-							👤
-						</div>
-						<div>
-							<h2 className="text-xl font-semibold">Никита Паремихов</h2>
-							<p className="text-gray-600">Фронтend-разработчик</p>
-							<p className="text-gray-500 text-sm">08.12.2005</p>
-						</div>
-					</div>
-					<button className="text-gray-600 hover:text-black">
-						<Edit size={20} />
-					</button>
+				<section className="rounded-lg flex items-center justify-between">
+					{loading ? (
+						<p className="text-gray-500">Загрузка...</p>
+					) : error ? (
+						<p className="text-red-500">{error}</p>
+					) : profile ? (
+						<UserCard
+							name={`${profile.user.first_name} ${profile.user.last_name}`}
+							role={profile.business_role || "Роль не указана"}
+							email={profile.corporate_email}
+							avatarUrl={profile.photo_url || "https://randomuser.me/api/portraits/men/1.jpg"}
+						/>
+					) : (
+						<p className="text-gray-500">Нет данных о профиле.</p>
+					)}
 				</section>
 
 				{/* Документы */}
@@ -35,73 +93,21 @@ const ProfilePage = () => {
 					</p>
 					<div className="grid grid-cols-4 gap-4">
 						{["паспорт РФ", "ИНН", "СНИЛС", "Полис"].map((doc, index) => (
-							<button
-								key={index}
-								className="p-4 bg-gray-200 rounded-lg flex flex-col items-center text-sm hover:bg-gray-300"
-							>
+							<button key={index} className="p-4 bg-gray-200 rounded-lg flex flex-col items-center text-sm hover:bg-gray-300">
 								➕ <span className="mt-2">{`Добавить ${doc}`}</span>
 							</button>
 						))}
 					</div>
-					<button className="mt-4 text-blue-500 hover:underline">
-						Все документы →
-					</button>
+					<button className="mt-4 text-blue-500 hover:underline">Все документы →</button>
 				</section>
 
 				{/* Департамент */}
 				<section className="mt-8">
 					<h3 className="text-xl font-semibold">Департамент</h3>
 					<div className="bg-gray-100 p-4 rounded-lg mt-2">
-						<p className="text-gray-700 font-medium">IT-департамент</p>
-						<p className="text-gray-500">Фронтенд-разработчик</p>
-						<p className="text-gray-500">Руководитель: Варвара Тарасовна</p>
+						<p className="text-gray-700 font-medium">{profile?.department || "Не указан"}</p>
+						<p className="text-gray-500">{profile?.business_role || "Роль не указана"}</p>
 					</div>
-				</section>
-
-				{/* Коллеги */}
-				<section className="mt-8">
-					<h3 className="text-xl font-semibold">Коллеги</h3>
-					<p className="text-gray-600 text-sm mb-4">
-						Тут ваши коллеги из вашего департамента
-					</p>
-					<div className="flex gap-4">
-						{["Григорьев Айаал", "Едесов Максим", "Христолюбов Ренат", "Пахом Энди"].map(
-							(name, index) => (
-								<div
-									key={index}
-									className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-sm"
-								>
-									{name.split(" ")[1].charAt(0)}
-								</div>
-							)
-						)}
-					</div>
-					<button className="mt-4 text-blue-500 hover:underline">
-						Все сотрудники →
-					</button>
-				</section>
-
-				{/* Мероприятия */}
-				<section className="mt-8">
-					<h3 className="text-xl font-semibold">Мероприятия</h3>
-					<p className="text-gray-600 text-sm mb-4">
-						Тут ваши мероприятия, которые вы посетили
-					</p>
-					<div className="grid grid-cols-4 gap-4">
-						{["День рождения", "Новогодний корпоратив", "DJ set от DJ Stack", "Поезд в темный лес"].map(
-							(event, index) => (
-								<div
-									key={index}
-									className="p-4 bg-gray-200 rounded-lg flex flex-col items-center text-center text-sm hover:bg-gray-300"
-								>
-									🎉 <span className="mt-2">{event}</span>
-								</div>
-							)
-						)}
-					</div>
-					<button className="mt-4 text-blue-500 hover:underline">
-						Все мероприятия →
-					</button>
 				</section>
 
 				{/* Контакты */}
@@ -109,18 +115,38 @@ const ProfilePage = () => {
 					<h3 className="text-xl font-semibold">Контакты</h3>
 					<div className="mt-4 space-y-2">
 						<p className="flex items-center space-x-2">
-							<Mail size={16} /> <a href="/" className="hover:text-blue-500">serito@cybered.ru</a>
+							<Mail size={16} /> <span>{profile?.corporate_email || "Email не указан"}</span>
 						</p>
 						<p className="flex items-center space-x-2">
-							<Mail size={16} /> <a href="/" className="hover:text-blue-500">hotnikita412@gmail.com</a>
+							<Phone size={16} /> <span>{profile?.phone || "Телефон не указан"}</span>
 						</p>
 						<p className="flex items-center space-x-2">
-							<Phone size={16} /> <span>+7 (914) 281-30-18</span>
-						</p>
-						<p className="flex items-center space-x-2">
-							<Send size={16} /> <a href="/" className="hover:text-blue-500">ntimm</a>
+							{/* <Send size={16} /> <span>ntimm</span> */}
 						</p>
 					</div>
+				</section>
+
+				{/* Активные сессии */}
+				<section className="mt-8">
+					<h3 className="text-xl font-semibold">Активные сессии</h3>
+					<p className="text-gray-600 text-sm mb-4">Здесь отображаются ваши активные сессии.</p>
+
+					{loading ? (
+						<p className="text-gray-500">Загрузка...</p>
+					) : error ? (
+						<p className="text-red-500">{error}</p>
+					) : sessions.length > 0 ? (
+						<ul className="bg-gray-100 p-4 rounded-lg space-y-2">
+							{sessions.map((session, index) => (
+								<li key={index} className="flex justify-between items-center p-2 border-b">
+									<span className="text-gray-700">{session.phone}</span>
+									<span className="text-gray-500 text-sm">{new Date(session.started_at).toLocaleString()}</span>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p className="text-gray-500">Нет активных сессий.</p>
+					)}
 				</section>
 			</div>
 			<Footer />

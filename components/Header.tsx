@@ -1,8 +1,11 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { getProfile } from '@/api';
+import axios from 'axios';
 
 interface ProfileData {
-	id: number;
+	role: string;
+	phone?: string;
 }
 
 const Header = () => {
@@ -13,11 +16,20 @@ const Header = () => {
 	useEffect(() => {
 		const fetchProfile = async () => {
 			try {
-				const data = await getProfile();
-				setProfile(data);
+				const response = await axios.get("http://localhost:8000/api/profiles", {
+					withCredentials: true,
+				});
+
+				if (Array.isArray(response.data) && response.data.length > 0) {
+					setProfile(response.data[0]);
+				} else {
+					setProfile(null);
+					setError("Профиль не найден");
+				}
 			} catch (err) {
-				setError('Ошибка получения профиля');
-				console.error(err);
+				console.error("Ошибка получения профиля:", err);
+				setProfile(null);
+				setError("Ошибка загрузки профиля");
 			} finally {
 				setLoading(false);
 			}
@@ -26,40 +38,28 @@ const Header = () => {
 		fetchProfile();
 	}, []);
 
-	if (loading) {
-		return (
-			<header className="max-w-full">
-				<div className="flex mx-auto justify-center items-center w-8/12 py-4">
-					<p className="text-gray-500">Загрузка...</p>
-				</div>
-			</header>
-		);
-	}
-
 	return (
-		<header className="max-w-full">
-			<div className="flex mx-auto justify-between items-center w-8/12 py-4">
-				<a href="/">
-					<div className="px-[70px] bg-no-repeat bg-[url(../app/cache/Logo.svg)] min-h-[30px]"></div>
-				</a>
-				<nav className="hidden sm:inline-block">
-					<ul className="flex lg:gap-[30px] font-regular text-xl text-black">
-						<li className="hover:text-blue-main"><a href="/#/News">Новости</a></li>
-						<li className="hover:text-blue-main"><a href="/#/Events">Мероприятия</a></li>
-						<li className="hover:text-blue-main"><a href="/">Заявления</a></li>
-						<li className="hover:text-blue-main"><a href="/#/Employees">Сотрудники</a></li>
-					</ul>
+		<header className="bg-white shadow-md py-4">
+			<div className="container mx-auto flex justify-between items-center">
+				<a href="/" className="text-xl font-bold">CyberOffice</a>
+				<nav className="hidden sm:flex space-x-6">
+					<a href="/#/News" className="hover:text-blue-600">Новости</a>
+					<a href="/#/Events" className="hover:text-blue-600">Мероприятия</a>
+					<a href="/#/Admin" className="hover:text-blue-600">Админка</a>
+					<a href="/#/Employees" className="hover:text-blue-600">Сотрудники</a>
 				</nav>
-				<div className="lg:gap-9">
-					{profile?.id ? (
+				<div>
+					{loading ? (
+						<p className="text-gray-500">Загрузка...</p>
+					) : profile ? (
 						<a href="/#/profile">
-							<button className="font-regular text-l text-black border border-black rounded-[64px] md:py-2 lg:py-2 md:px-4 lg:px-16">
+							<button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
 								Профиль
 							</button>
 						</a>
 					) : (
 						<a href="/#/ChooseAuth">
-							<button className="font-regular text-l text-black border border-black rounded-[64px] md:py-2 lg:py-2 md:px-4 lg:px-16">
+							<button className="bg-gray-300 text-black px-4 py-2 rounded-lg">
 								Войти
 							</button>
 						</a>
